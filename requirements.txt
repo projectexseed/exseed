@@ -1,0 +1,4 @@
+Django==1.9.7
+django-tagulous==0.11.1
+django-vote==1.1.2
+django-crispy-forms==1.6.0

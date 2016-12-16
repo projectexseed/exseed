@@ -1,0 +1,60 @@
+{% extends 'common/base.html' %}
+
+{% load url from future %}
+{% load staticfiles %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/custom.css" %}">
+{% endblock %}
+
+{% block body %}
+
+<div class="row" style="background-image:url('{% static "images/tenant_header_dark.jpg" %}'); background-position:center;">
+	<div class="container">
+		<div class="well white" style="background:transparent; border:0px;">
+			<center>
+				<br><br><br><br><br>
+				<h1 class="lighter bigger">One application. One background check.</h1>
+				<h2>Focus on finding the perfect place.</h2>
+				<br><br><br><br>
+				<a href="{% url 'signup' %}" class="btn btn-lg btn-success">Sign up, it's free!</a>
+				<a href="{% url 'login' %}" class="btn btn-lg btn-success">Sign in</a>
+				<br><br><br><br>
+			</center>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="container">
+		<div class="col-md-12 big-padding lead">
+			<h1 class="lighter">Post an application.</h1>
+			Save time and paper, fill out your application once with Cloudhous, and share it with as many potential landlords as you want! Your profile is always free.
+		</div>
+	</div>
+</div>
+
+<div class="row gray-bg">
+	<div class="container">
+		<div class="col-md-12 big-padding lead">
+			<h1 class="lighter">Pay for a background or credit check once.</h1>
+			When a landlord wants to see your background or credit, you can purchase it once and make it viewable by multiple potential landlords. No need to get a separate check each time you want to apply to a house, and your sensitive information stays private.
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="container">
+		<div class="col-md-6 big-padding lead">
+			<h1 class="lighter">Ready to get started?</h1>
+			<a href="{% url 'signup' %}" class="btn btn-lg btn-success">Sign up</a>
+		</div>
+		<div class="col-md-6 big-padding lead">
+			<h1 class="lighter">Questions?</h1>
+			<a href="http://myaccount.zendesk.com/account/dropboxes/20127999" onclick="script: Zenbox.show(); return false;" alt="Contact" class="btn btn-success btn-lg">Contact Us</a>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

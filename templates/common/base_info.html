@@ -1,0 +1,19 @@
+{% extends 'common/base.html' %}
+{% load staticfiles %}
+
+{% block headtag %}
+  style="background-image:url('{% static "images/landlord_header_dark.jpg" %}'); background-position:center;"
+{% endblock %}
+
+
+{% block body %}
+<div class="col-md-8 col-md-offset-2 transparent marginTop25 big-padding text-center">
+	<div class="col-md-12">
+		<h1 class="lighter">{% block title %}{% endblock %}</h1>
+		<small>{% block form_subtitle %}{% endblock %}</small>
+		<br><br>
+	</div>
+	{% block content %}
+	{% endblock %}
+</div>
+{% endblock %}

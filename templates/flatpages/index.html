@@ -1,0 +1,42 @@
+{% extends 'common/base.html' %}
+
+{% load staticfiles %}
+
+{% block container %}
+
+<div class="row" style="background-image:url('{% static "images/header_dark.jpg" %}'); background-position:center;">
+	<div class="container">
+		<div class="well white" style="background:transparent; border:0px;">
+			<center>
+				<br><br><br><br><br>
+				<h1 class="lighter bigger">Find your team.</h1>
+				<h2>Share ideas, knowledge, and time to accomplish great things.</h2>
+				<br><br><br><br>
+				<a href="{% url 'signup' %}" class="btn btn-lg btn-success">Sign up, it's free!</a>
+				<a href="{% url 'login' %}" class="btn btn-lg btn-success">Sign in</a>
+				<br><br><br><br>
+			</center>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="container">
+		<div class="col-md-12 big-padding lead">
+			<h1 class="lighter lineHeightTaller">
+			Stuff n things!</h1>
+			<br><br>
+		</div>
+	</div>
+</div>
+
+<div class="row gray-bg">
+	<div class="container">
+		<div class="col-md-6 big-padding lead">
+			<h1 class="lighter">Ready to get started?</h1>
+			<a href="{% url 'signup' %}" class="btn btn-lg btn-success">Sign up</a>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

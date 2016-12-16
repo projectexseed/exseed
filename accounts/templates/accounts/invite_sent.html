@@ -1,0 +1,10 @@
+{% extends 'common/base.html' %}
+
+{% load url from future %}
+
+{% block body %}
+<div class="jumbotron">
+<h1>Your invitation has been sent.</h1>
+<a href="{% url 'invite' %}" class="btn btn-lg btn-success">Back</a>
+</div>
+{% endblock  %}

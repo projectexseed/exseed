@@ -1,0 +1,9 @@
+{% extends 'common/base.html' %}
+
+{% block body %}
+<div class="col-xs-12">
+	<h1>Posts for tag {{tag}}:</h1>
+
+	{% include 'posts/list_snippet.html' with posts=post_list %}
+</div>
+{% endblock %}

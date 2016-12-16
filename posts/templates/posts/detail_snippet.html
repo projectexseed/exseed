@@ -1,0 +1,37 @@
+
+<li data-id={{object.pk}}>
+	<table style="display:block;">
+		<tr>
+			<td style="vertical-align:top; padding-right:8px;">
+				{% include 'posts/votes_snippet.html' with object=object current_post=current_post %}
+			</td>
+			<td>
+				<strong><a href="{% url 'post_detail' object.id %}">{{object.title}}</a></strong>
+				<small><a data-toggle="collapse" data-target="#content-{{object.pk}}" class="collapse-link" style="cursor:pointer;">[hide]</a></small>
+				<br>
+				<small>By: <a href="{% url 'post_list_by_user' object.owner.pk %}">{{object.owner.first_name}}</a> {{object.date_created|timesince}} ago</small>
+				{% for tag in object.tags.all %}
+				    <a href="{% url 'post_list_by_tag' tag.slug %}" class="small"><mark>{{ tag.name }}</mark></a>
+				{% endfor %}
+				<br>
+				<a href="{% url 'post_reply' object.id %}"><small><strong>Reply</strong></small></a>
+				{% if request.user == object.owner %}
+					<a href="{% url 'post_update' object.id %}"><small><strong>Edit</strong></small></a>
+				{% endif %}
+				
+				<div id="content-{{object.pk}}" class="collapse in">
+					<p>
+						{{object.body}}
+					</p>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+	<ol data-id={{object.pk}}>
+		{% for reply in object.replies.all %}
+			{% include 'posts/detail_snippet.html' with object=reply current_post=current_post %}
+		{% endfor %}
+	</ol>
+</li>
+

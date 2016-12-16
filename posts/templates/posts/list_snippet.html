@@ -1,0 +1,26 @@
+<table class="table table-striped">
+	<tbody>
+	    {% for post in posts %}
+	        <tr><td>
+				<div class="col-md-3">
+					<small>VOTES:</small> {{post.vote_count}} <small>REPLIES:</small> {{post.reply_count}}
+				</div>
+				<div class="col-md-9">
+					<a href="{% url 'post_detail' post.id %}">{{ post.title }}</a><br>
+					<div class="col-md-8">
+						{% for tag in post.tags.all %}
+						    <mark><a href="{% url 'post_list_by_tag' tag.slug %}">{{ tag.name }}</a></mark>
+						{% endfor %}
+					</div>
+					<div class="col-md-4">
+						<small>
+							By: <a href="{% url 'post_list_by_user' post.owner.pk %}">{{post.owner.first_name}}</a>
+							<br>
+							{{post.date_created|timesince}} ago
+						</small>
+					</div>
+				</div>
+			</td></tr>
+	    {% endfor %}
+	</tbody>
+</table>

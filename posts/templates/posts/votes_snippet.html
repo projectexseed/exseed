@@ -1,0 +1,10 @@
+{% load did_vote %}
+
+{% did_vote object request.user.id as voted%}
+<a data-id={{object.pk}} href="#" class="vote-toggle glyphicon glyphicon-triangle-top {% if voted %}did_vote{% else %}no_vote{% endif %}" style="text-decoration:none; display:block;"></a>
+<span id="count-{{object.pk}}">{{object.vote_count}}</span>
+
+<br>
+{% if object != current_post %}
+	<a data-id={{object.pk}} href="#" class="complete-toggle glyphicon glyphicon-ok {% if object.completed %}complete{% else %}incomplete{% endif %}"></a>
+{% endif %}

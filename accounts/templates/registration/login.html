@@ -1,0 +1,15 @@
+{% extends 'common/base_form.html' %}
+
+{% block title %}
+Sign in
+{% endblock %}
+
+{% block afterform %}
+<div class="row">
+	<div class="col-md-11 text-right">
+		<br>
+		<a href="{% url 'password_reset' %}">Forgot Password!</a>
+	</div>
+</div>
+{% endblock %}
+{% block form_subtitle %}{% endblock %}
