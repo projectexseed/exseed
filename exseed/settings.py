@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
 import os
+import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('MY_SECRET_KEY')
+SECRET_KEY = config.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -99,9 +100,9 @@ WSGI_APPLICATION = 'exseed.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.environ.get('SERVER_NAME'),
-        "USER": os.environ.get('SERVER_USER'),
-        "PASSWORD": os.environ.get('SERVER_PASSWORD'),
+        "NAME": config.SERVER_NAME,
+        "USER": config.SERVER_USER,
+        "PASSWORD": config.SERVER_PASSWORD,
         "HOST": "localhost",
         "PORT": "",
     }
