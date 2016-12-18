@@ -1,0 +1,89 @@
+{% extends 'common/base.html' %}
+
+{% load url from future %}
+{% load staticfiles %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/custom.css" %}">
+{% endblock %}
+
+{% block body %}
+
+<div class="row" style="background-image:url('{% static "images/landlord_header_dark.jpg" %}'); background-position:center;">
+	<div class="container">
+		<div class="well white" style="background:transparent; border:0px;">
+			<center>
+				<br><br><br><br><br>
+				<h1 class="lighter bigger">Organized Rentals.</h1>
+				<h2>Find the right person, we'll handle the paperwork.</h2>
+				<br><br><br><br>
+				<a href="{% url 'signup' %}" class="btn btn-lg btn-success">Sign up, it's free!</a>
+				<a href="{% url 'login' %}" class="btn btn-lg btn-success">Sign in</a>
+				<br><br><br><br>
+			</center>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="container">
+		<div class="col-md-12 big-padding lead">
+			<h1 class="lighter">Post your space.</h1>
+			Manage everything about the rental process in one place.
+			Save all the details that you want to be able to share with potential tenants. Start accepting applications in as little as 10 minutes.
+		</div>
+	</div>
+</div>
+
+<div class="row gray-bg">
+	<div class="container">
+		<!-- <div class="col-md-3 big-padding hidden-xs">
+			<img class="responsive" src="{% static "images/share.png" %}">
+		</div> -->
+		<div class="col-md-12 big-padding lead">
+			<h1 class="lighter">Easily share on any website, or with private individuals.</h1>
+			When you complete your profile, we will give you a link that potential tenants can use to apply directly to your space. Embed your application link in any post on websites like Craigslist, or share it directly with other individuals.
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="container">
+		<!-- <div class="col-md-3 big-padding hidden-xs">
+			<img class="responsive" src="{% static "images/filter.png" %}">
+		</div> -->
+		<div class="col-md-12 big-padding lead">
+			<h1 class="lighter">Sort and notate applications.</h1>
+			Once you start getting applications, you can reorder them as you like and write private notes to keep track of who you've talked to and where they are in the process.
+		</div>
+	</div>
+</div>
+
+
+<div class="row gray-bg">
+	<div class="container">
+		<div class="col-md-12 big-padding lead">
+			<h1 class="lighter">Background and Credit checks.</h1>
+			Find someone that meets your criteria? Request a background check, we'll handle the details and get you the report.
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="container">
+		<div class="col-md-6 big-padding lead">
+			<h1 class="lighter">Ready to get started?</h1>
+			<a href="{% url 'signup' %}" class="btn btn-lg btn-success">Sign up</a>
+		</div>
+		<div class="col-md-6 big-padding lead">
+			<h1 class="lighter">Questions?</h1>
+			<a href="http://myaccount.zendesk.com/account/dropboxes/20127999" onclick="script: Zenbox.show(); return false;" alt="Contact" class="btn btn-success btn-lg">Contact Us</a>
+		</div>
+	</div>
+</div>
+
+
+
+
+{% endblock %}

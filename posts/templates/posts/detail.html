@@ -1,0 +1,146 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'css/detail_list.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="row">
+	<div class="col-xs-12">
+		<ol class="breadcrumb">
+		  <li><a href="{% url 'post_index' %}">Posts</a></li>
+		  {% include 'posts/breadcrumb.html' with object=object %}
+		</ol>
+	</div>
+</div>
+
+<div class="col-xs-12">
+	<h2>{{object.title}}</h2>
+	<small>By: <a href="{% url 'post_list_by_user' object.owner.pk %}">{{object.owner.first_name}}</a>
+	{{object.date_created|timesince}} ago</small>
+	<hr>
+</div>
+
+<div class="col-xs-1 text-center">
+	<h3>
+		{% include 'posts/votes_snippet.html' with object=object current_post=object %}
+	</h3>
+</div>
+
+<div class="col-xs-11">
+	<br>
+	<p class="lead">{{object.body}}</p>
+	{% for tag in object.tags.all %}
+	    <a href="{% url 'post_list_by_tag' tag.slug %}" class="small"><mark>{{ tag.name }}</mark></a>
+	{% endfor %}
+	<br>
+	<a href="{% url 'post_reply' object.id %}">Reply</a>
+	{% if request.user == object.owner %}
+		<a href="{% url 'post_update' object.id %}">Edit</a>
+	{% endif %}
+	<br><br><br>
+</div>
+
+<div class="col-xs-12">
+	<h4>{{object.replies.count}} replies:</h4>
+</div>
+
+<div class="clearfix"></div>
+
+
+<ol class="reply-list" data-id={{object.pk}}>
+{% for reply in object.replies.all %}
+	{% include 'posts/detail_snippet.html' with object=reply current_post=object %}
+{% endfor %}
+</ol>
+
+{% endblock %}
+
+{% block scripts %}
+	<script src="{% static 'js/jquery-sortable.js' %}"></script>
+
+	<script>
+		$(function  () {
+			$("ol.reply-list").sortable({
+				onDrop: function ($item, container, _super, event) {
+					$item.removeClass(container.group.options.draggedClass).removeAttr("style")
+					$("body").removeClass(container.group.options.bodyClass)
+
+					var post_id = $item.attr("data-id");
+					var parent_id = $item.parent().attr("data-id");
+					var index = $item.index();
+
+					var url = "{% url 'post_reorder_ajax_template' %}";
+					// Now we need to add the post_id, the parent_id, and the ordinal
+					url = url + post_id + '/' + parent_id + '/' + index + '/';
+
+					$.ajax(url, {
+						dataType: "json",
+						success: function(data) {
+							// console.log(data['ok']);
+						}});
+				}
+			});
+
+			$('.vote-toggle').each(function () {
+			    var $this = $(this);
+			    $this.on("click", function (e) {
+			    	e.preventDefault();
+
+			    	var post_id = $(this).data('id');
+			    	url = "{% url 'post_vote_toggle_ajax_template' %}" + post_id + '/';
+					$.ajax({
+						type: "GET",
+						url: url,
+						dataType: "json",
+						success: function(data){
+							var selector = '#count-' + post_id;
+							$(selector).html(data['new_vote_count']);
+
+							var did_vote = data['did_vote'];
+							if (did_vote) {
+								$this.removeClass('no_vote');
+								$this.addClass('did_vote');
+							} else {
+								$this.removeClass('did_vote');
+								$this.addClass('no_vote');
+							}
+						}
+					});
+			    });
+			});
+
+			$('.complete-toggle').each(function () {
+			    var $this = $(this);
+			    $this.on("click", function (e) {
+			    	e.preventDefault();
+
+			    	var post_id = $(this).data('id');
+			    	url = "{% url 'post_complete_ajax_template' %}" + post_id + '/';
+					$.ajax({
+						type: "GET",
+						url: url,
+						dataType: "json",
+						success: function(data){
+							var completed = data['completed'];
+							if (completed) {
+								$this.removeClass('incomplete');
+								$this.addClass('complete');
+							} else {
+								$this.removeClass('complete');
+								$this.addClass('incomplete');
+							}
+						}
+					});
+			    });
+			});
+
+			$('.collapse-link').click(function(){ //you can give id or class name here for $('button')
+			    $(this).text(function(i,old){
+			        return old=='[show]' ?  '[hide]' : '[show]';
+			    });
+			});
+		});
+	</script>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'common/base.html' %}
+
+{% load staticfiles %}
+
+{% block container %}
+
+<div class="row" style="background-image:url('{% static "images/header_dark.jpg" %}'); background-position:center;">
+	<div class="container">
+		<div class="well white" style="background:transparent; border:0px;">
+			<center>
+				<br><br><br><br><br>
+				<h1 class="lighter bigger">Landlords & tenants together.</h1>
+				<h2>The application process made simple.</h2>
+				<br><br><br><br>
+				<a href="{% url 'signup' %}" class="btn btn-lg btn-success">Sign up, it's free!</a>
+				<a href="{% url 'login' %}" class="btn btn-lg btn-success">Sign in</a>
+				<br><br><br><br>
+			</center>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="container">
+		<div class="col-md-12 big-padding lead">
+			<h1 class="lighter lineHeightTaller">
+			Cloudhous provides a central place to save your information while you search for the perfect house or renters.
+			Build your profile, activate your public link, and seize the day!</h1>
+			<br><br>
+		</div>
+	</div>
+</div>
+
+
+<div class="row gray-bg">
+	<div class="container">
+		<div class="col-md-12 big-padding lead">
+			<h1 class="lighter">One form to rule them all.</h1>
+			Not too long ago applying for 4 houses meant filling out 4 applications and paying for 4 background checks. On Cloudhous, fill out one application, pay once for a background check, then just send your link 4 times.
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="container">
+		<div class="col-md-12 big-padding lead">
+			<h1 class="lighter">Keep your information safe.</h1>
+			Your personal information is yours. You control what you share, and when you share it. Turn on and off public access to your profile at any time at the touch of a button.
+		</div>
+	</div>
+</div>
+
+<div class="row gray-bg">
+	<div class="container">
+		<div class="col-md-6 big-padding lead">
+			<h1 class="lighter">Ready to get started?</h1>
+			<a href="{% url 'signup' %}" class="btn btn-lg btn-success">Sign up</a>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,2 @@
+{% if object.parent %}{% include 'posts/breadcrumb.html' with object=object.parent %}{% endif %} 
+<li><a href="{% url 'post_detail' object.id %}">{{object.title|slice:":20"}}</a></li>

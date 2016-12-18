@@ -1,0 +1,61 @@
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+
+ol {
+	padding-left:20px;
+}
+
+ol.reply-list {
+	margin: 0 0 9px 0;
+	min-height: 10px;
+}
+
+ol.reply-list li {
+	display: block;
+    margin: 5px;
+    padding: 5px;
+    background-color: #f2f2f2;
+}
+
+ol.reply-list li.placeholder {
+	position: relative;
+	margin: 0;
+    padding: 0;
+    border: none;
+}
+
+ol.reply-list li.placeholder:before {
+	position: absolute;
+	content: "";
+	width: 0;
+	height: 0;
+	margin-top: -5px;
+	left: -5px;
+	top: -4px;
+	border: 5px solid transparent;
+	border-left-color: orange;
+	border-right: none;
+}
+
+.did_vote {
+	color:orange;
+}
+
+.no_vote {
+	color:gray;
+}
+
+.complete {
+	color:orange;
+}
+
+.incomplete {
+	color:gray;
+}

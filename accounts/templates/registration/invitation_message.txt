@@ -1,0 +1,11 @@
+<html>
+Hi,<br>
+<br>
+{{user.first_name}} {{user.last_name}} wants to use CloudHous with you to track bills and payments. Click the link below to get started.<br>
+<br>
+<a href="{{accept_url}}">Accept Invitation</a><br>
+<a href="{{deny_url}}">Deny Invitation</a><br>
+<br>
+Cheers,<br>
+CloudHous team<br>
+</html>

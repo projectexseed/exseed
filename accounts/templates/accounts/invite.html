@@ -1,0 +1,54 @@
+{% extends 'common/base.html' %}
+
+{% load url from future %}
+{% load form_css %}
+
+{% block body %}
+<div class="jumbotron">
+  <div class="row">
+    <h1>{{request.user.house.name}}</h1>
+    <a href="{% url 'house_update' request.user.house.pk %}">Change your house name.</a>
+  </div>
+  
+  <div class="row">
+    <!-- current roommates -->
+    <div class="col-md-4">
+      <h2>Your Roommates</h2>
+      {% for user in roommates %}
+        <h3>{{ user.first_name }} {{user.last_name}}</h3>
+      {% empty %}
+        <h3>Invite some roommates to your house so you can stat splitting bills!</h3>  
+      {% endfor %}
+
+    </div>
+
+    <!-- invite form -->
+    <div class="col-md-4">
+      <h2>Send invitation</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      {% for field in form %}
+              {{ field.label_tag }}
+              {{ field|addcss:"form-control" }}
+              {{ field.errors }}
+      {% endfor %}
+      <Br>
+        <input type="submit" value="Invite" class="btn btn-lg btn-success"/>
+    </form>
+    </div>
+
+    <!-- pending invitations -->
+    <div class="col-md-4">
+      <h2>Pending Invitations:</h2>
+      <table class="table">
+      {% for invite in invitations.all %}
+      <tr><td><small><a href="{% url 'invite_cancel' invite.pk %}"><small class="glyphicon glyphicon-trash"></small></a></small></td><td>{{invite.email}}</td></tr>
+      {%empty%}
+        <tr><td>No pending invitations. Send invite your roommates by email to split bills with them.
+      {%endfor%}
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock  %}
