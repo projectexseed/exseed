@@ -1,3 +1,3 @@
 # exseed
 
-A platform for sharing and collaborating on ideas.
+A platform for sharing ideas and collaborating to discover solutions.
