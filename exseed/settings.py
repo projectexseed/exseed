@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'posts.apps.PostsConfig',
+    'anymail',
     'tagulous',
     'vote',
     'crispy_forms',
@@ -153,3 +154,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles"),
 ]
+
+ANYMAIL = {
+    "MAILGUN_API_KEY": config.MAILGUN_API_KEY,
+    "MAILGUN_SENDER_DOMAIN": 'exseed.cc',
+}
+EMAIL_BACKEND = "anymail.backends.mailgun.MailgunBackend"
+DEFAULT_FROM_EMAIL = config.DEFAULT_FROM_EMAIL

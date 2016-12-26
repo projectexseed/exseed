@@ -10,6 +10,8 @@ from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseForbidden
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.core.mail import send_mail
+from exseed import config
 
 Account = get_user_model()
 
@@ -159,6 +161,8 @@ class RegistrationFormView(FormView):
             last_name=last_name,
             password=password,
         )
+
+        send_mail("Account Created", "Welcome aboard %s! Feel free to reply with questions, suggstions or jokes, if you know one.\n\nRaphael" % first_name, config.EMAIL_FROM_ADDRESS, [email])
 
         user = authenticate(email=email, password=password)
         login(self.request, user)
