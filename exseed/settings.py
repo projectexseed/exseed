@@ -27,7 +27,7 @@ SECRET_KEY = config.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['exseed.cc',]
+ALLOWED_HOSTS = ['exseed.cc']
 
 SITE_ID = 1
 
@@ -168,5 +168,5 @@ RAVEN_CONFIG = {
     'dsn': config.RAVEN_URL,
     # If you are using git, you can also automatically configure the
     # release based on the git info.
-    # 'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+    'release': "master",
 }
