@@ -25,18 +25,18 @@ class VoteToggleView(generic.View):
     def get(self, request, **kwargs):
         post_id = kwargs.get('post_id')
         post = get_object_or_404(Post, pk=post_id)
-        if request.user.is_authenticated() and not post.votes.exists(request.user):
-            post.votes.up(request.user)
+        if request.user.is_authenticated() and not post.votes.exists(request.user.id):
+            post.votes.up(request.user.id)
 
             # We also want to make sure the user gets credit for the points.
             Point.objects.applyScore(post, 10)
         elif request.user.is_authenticated():
-            post.votes.down(request.user)
+            post.votes.down(request.user.id)
 
             # We also want to make sure the user gets credit for the points.
             Point.objects.applyScore(post, -10)
 
-        return JsonResponse({"new_vote_count": post.votes.count(), "did_vote": post.votes.exists(request.user)})
+        return JsonResponse({"new_vote_count": post.votes.count(), "did_vote": post.votes.exists(request.user.id)})
 
 
 class ListByTag(generic.ListView):
