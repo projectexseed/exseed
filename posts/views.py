@@ -6,6 +6,7 @@ from .forms import AddPostForm
 from django.views import generic
 from score.models import Point
 from accounts.models import Account
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def index(request):
@@ -21,17 +22,17 @@ class DetailView(generic.DetailView):
     template_name = 'posts/detail.html'
 
 
-class VoteToggleView(generic.View):
+class VoteToggleView(LoginRequiredMixin, generic.View):
     def get(self, request, **kwargs):
         post_id = kwargs.get('post_id')
         post = get_object_or_404(Post, pk=post_id)
         user_id = request.user.id
-        if request.user.is_authenticated() and not post.votes.exists(user_id):
+        if not post.votes.exists(user_id):
             post.votes.up(user_id)
 
             # We also want to make sure the user gets credit for the points.
             Point.objects.applyScore(post, 10)
-        elif request.user.is_authenticated():
+        else:
             post.votes.down(user_id)
 
             # We also want to make sure the user gets credit for the points.
