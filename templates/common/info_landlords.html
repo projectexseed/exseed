@@ -1,7 +1,7 @@
 {% extends 'common/base.html' %}
 
 {% load url from future %}
-{% load staticfiles %}
+{% load static %}
 
 {% block head %}
     <link rel="stylesheet" href="{% static "css/custom.css" %}">
@@ -9,7 +9,7 @@
 
 {% block body %}
 
-<div class="row" style="background-image:url('{% static "images/landlord_header_dark.jpg" %}'); background-position:center;">
+<div class="row">
 	<div class="container">
 		<div class="well white" style="background:transparent; border:0px;">
 			<center>

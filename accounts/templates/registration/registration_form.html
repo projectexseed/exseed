@@ -1,9 +1,5 @@
 {% extends 'common/base_form.html' %}
-{% load staticfiles %}
-
-{% block headtag %}
-	style="background-image:url('{% static "images/landlord_header_dark.jpg" %}'); background-position:center;"
-{% endblock %}
+{% load static %}
 
 {% block title %}
 {{form_title}}

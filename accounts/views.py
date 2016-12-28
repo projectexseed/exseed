@@ -70,14 +70,6 @@ class IndexView(generic.TemplateView):
     template_name = 'common/index.html'
 
 
-class TenantInfoView(generic.TemplateView):
-    template_name = 'common/info_tenants.html'
-
-
-class LandlordInfoView(generic.TemplateView):
-    template_name = 'common/info_landlords.html'
-
-
 class AccountEditFormView(FormView):
     template_name = 'registration/registration_form_update.html'
 
