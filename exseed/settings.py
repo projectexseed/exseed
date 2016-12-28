@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config.DEBUG
 
 ALLOWED_HOSTS = ['exseed.cc']
 
@@ -156,6 +156,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles"),
 ]
+
+#Used by collectstatic
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles/collected")
 
 ANYMAIL = {
     "MAILGUN_API_KEY": config.MAILGUN_API_KEY,
